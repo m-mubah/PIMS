@@ -7,9 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PIMS.API.Data;
-using PIMS.API.Domain.Entities;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace PIMS.API.Controllers
 {
@@ -20,7 +17,7 @@ namespace PIMS.API.Controllers
         private readonly PIMSContext _context;
         private readonly ILogger _logger;
 
-        public AtollController(PIMSContext context, ILogger logger)
+        public AtollController(PIMSContext context, ILogger<AtollController> logger)
         {
             _context = context;
             _logger = logger;
@@ -40,7 +37,7 @@ namespace PIMS.API.Controllers
         {
             try
             {
-               var atoll = await _context.Atolls.Where(a => a.Id == id).FirstOrDefaultAsync();
+               var atoll = await _context.Atolls.Where(a => a.Id == id).Include(a => a.Islands).FirstOrDefaultAsync();
                 
                 return Ok(atoll);
             }
@@ -50,6 +47,6 @@ namespace PIMS.API.Controllers
 
                 return new StatusCodeResult(StatusCodes.Status500InternalServerError);
             }
-        } 
+        }
     }
 }

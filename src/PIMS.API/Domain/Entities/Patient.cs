@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using PIMS.API.Domain.Enums;
 
 namespace PIMS.API.Domain.Entities
@@ -18,8 +19,10 @@ namespace PIMS.API.Domain.Entities
 #nullable disable
 
         public int IslandId { get; set; }
+        [JsonIgnore]
         public virtual Island Island { get; set; }
         public virtual PatientHistory History { get; set; }
+        [JsonIgnore]
         public IEnumerable<Case> Cases { get; set; }
     }
 }

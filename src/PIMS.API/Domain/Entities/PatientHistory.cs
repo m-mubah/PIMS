@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace PIMS.API.Domain.Entities
 {
     public class PatientHistory : EntityBase
@@ -9,8 +11,9 @@ namespace PIMS.API.Domain.Entities
         public string? Familial { get; set; }
         public string? Other { get; set; }
 # nullable disable
-
+        [JsonIgnore]
         public int PatientId { get; set; }
+        [JsonIgnore]
         public virtual Patient Patient { get; set; }
     }
 }

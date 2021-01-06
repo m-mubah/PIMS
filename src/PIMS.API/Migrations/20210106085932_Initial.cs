@@ -168,11 +168,11 @@ namespace PIMS.API.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CancerTreatment = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Medical = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Surgical = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Familial = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Other = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CancerTreatment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Medical = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Surgical = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Familial = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Other = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PatientId = table.Column<int>(type: "int", nullable: false),
                     DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
