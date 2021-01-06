@@ -29,9 +29,7 @@ namespace PIMS.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContextPool<PIMSContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection"),
-                new MySqlServerVersion(new Version(8, 0, 21))
-            ));
+            services.AddDbContextPool<PIMSContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

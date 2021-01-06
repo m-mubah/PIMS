@@ -12,7 +12,6 @@ namespace PIMS.API.Data.SchemaConfigurations
             builder.HasKey(k => k.Id);
 
             builder.Property(p => p.Name).IsRequired().HasMaxLength(160);
-            builder.Property(p => p.DeletedOn).HasDefaultValue(null);
 
             builder.HasOne(i => i.Atoll).WithMany(a => a.Islands).HasForeignKey(i => i.AtollId);
 

@@ -13,12 +13,9 @@ namespace PIMS.API.Data.SchemaConfigurations
 
             builder.Property(p => p.Name).IsRequired().HasMaxLength(60);
             builder.Property(p => p.Code).IsRequired().HasMaxLength(5);
-            builder.Property(p => p.DeletedOn).HasDefaultValue(null);
 
             builder.HasIndex(i => i.Name).IsUnique();
             builder.HasIndex(i => i.Code).IsUnique();
-
-            builder.HasQueryFilter(q => q.DeletedOn == null);
 
             builder.HasData(
                 new Atoll {Id = 1, Name = "Haa Alif", Code = "H.A."},

@@ -2,8 +2,9 @@ using System.Collections.Generic;
 
 namespace PIMS.API.Domain.Entities
 {
-    public class Island : EntityBase
+    public class Island
     {
+        public int Id { get; set; }
         public string Name { get; set; }
 
         public int AtollId { get; set; }

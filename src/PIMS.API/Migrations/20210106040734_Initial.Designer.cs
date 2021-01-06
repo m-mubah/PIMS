@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PIMS.API.Data;
@@ -9,34 +10,33 @@ using PIMS.API.Data;
 namespace PIMS.API.Migrations
 {
     [DbContext(typeof(PIMSContext))]
-    [Migration("20210105190857_Initial")]
+    [Migration("20210106040734_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 64)
+                .UseIdentityColumns()
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.1");
 
             modelBuilder.Entity("PIMS.API.Domain.Entities.Atoll", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<string>("Code")
                         .IsRequired()
                         .HasMaxLength(5)
-                        .HasColumnType("varchar(5) CHARACTER SET utf8mb4");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("nvarchar(5)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(60)
-                        .HasColumnType("varchar(60) CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(60)");
 
                     b.HasKey("Id");
 
@@ -175,31 +175,32 @@ namespace PIMS.API.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<bool>("Active")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("bit");
 
                     b.Property<string>("CaseId")
                         .IsRequired()
                         .HasMaxLength(7)
-                        .HasColumnType("varchar(7) CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(7)");
 
                     b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Diagnosis")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PatientId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("RegisteredDate")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TypeId")
                         .HasColumnType("int");
@@ -219,25 +220,26 @@ namespace PIMS.API.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<int>("CaseId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Diagnosis")
                         .IsRequired()
                         .HasMaxLength(240)
-                        .HasColumnType("varchar(240) CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(240)");
 
                     b.Property<DateTime?>("NextFollowupDate")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Remarks")
                         .HasMaxLength(240)
-                        .HasColumnType("varchar(240) CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(240)");
 
                     b.HasKey("Id");
 
@@ -250,17 +252,18 @@ namespace PIMS.API.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<int>("CaseId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Details")
                         .HasMaxLength(240)
-                        .HasColumnType("varchar(240) CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(240)");
 
                     b.Property<int>("TypeId")
                         .HasColumnType("int");
@@ -278,15 +281,16 @@ namespace PIMS.API.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(120)
-                        .HasColumnType("varchar(120) CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(120)");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
@@ -300,18 +304,16 @@ namespace PIMS.API.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<int>("AtollId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(160)
-                        .HasColumnType("varchar(160) CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(160)");
 
                     b.HasKey("Id");
 
@@ -1484,19 +1486,20 @@ namespace PIMS.API.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("GenericName")
                         .HasMaxLength(120)
-                        .HasColumnType("varchar(120) CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(120)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(120)
-                        .HasColumnType("varchar(120) CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(120)");
 
                     b.HasKey("Id");
 
@@ -1507,7 +1510,8 @@ namespace PIMS.API.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<int>("AmountRemaining")
                         .HasMaxLength(100)
@@ -1517,18 +1521,18 @@ namespace PIMS.API.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("DispatchedBy")
                         .HasMaxLength(120)
-                        .HasColumnType("varchar(120) CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(120)");
 
                     b.Property<DateTime?>("DispatchedDate")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FDAB")
                         .HasMaxLength(240)
-                        .HasColumnType("varchar(240) CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(240)");
 
                     b.Property<int>("MedicineId")
                         .HasColumnType("int");
@@ -1538,22 +1542,22 @@ namespace PIMS.API.Migrations
 
                     b.Property<string>("RecievedBy")
                         .HasMaxLength(120)
-                        .HasColumnType("varchar(120) CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(120)");
 
                     b.Property<DateTime?>("RecievedDate")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Remarks")
                         .HasMaxLength(240)
-                        .HasColumnType("varchar(240) CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(240)");
 
                     b.Property<string>("RequestedBy")
                         .IsRequired()
                         .HasMaxLength(120)
-                        .HasColumnType("varchar(120) CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(120)");
 
                     b.Property<DateTime>("RequestedDate")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("VendorId")
                         .HasColumnType("int");
@@ -1573,15 +1577,16 @@ namespace PIMS.API.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(120)
-                        .HasColumnType("varchar(120) CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(120)");
 
                     b.Property<int>("PrimaryContactNumber")
                         .HasMaxLength(7)
@@ -1600,27 +1605,28 @@ namespace PIMS.API.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<DateTime>("BirthDate")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(120)
-                        .HasColumnType("varchar(120) CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(120)");
 
                     b.Property<string>("HospitalNumber")
                         .HasMaxLength(12)
-                        .HasColumnType("varchar(12) CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(12)");
 
                     b.Property<string>("Identification")
                         .IsRequired()
                         .HasMaxLength(12)
-                        .HasColumnType("varchar(12) CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(12)");
 
                     b.Property<int>("IslandId")
                         .HasColumnType("int");
@@ -1631,7 +1637,7 @@ namespace PIMS.API.Migrations
 
                     b.Property<string>("RegistrationNumber")
                         .HasMaxLength(12)
-                        .HasColumnType("varchar(12) CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(12)");
 
                     b.Property<int?>("SecondaryContactNumber")
                         .HasColumnType("int");
@@ -1642,7 +1648,8 @@ namespace PIMS.API.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("HospitalNumber")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[HospitalNumber] IS NOT NULL");
 
                     b.HasIndex("Identification")
                         .IsUnique();
@@ -1650,7 +1657,8 @@ namespace PIMS.API.Migrations
                     b.HasIndex("IslandId");
 
                     b.HasIndex("RegistrationNumber")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[RegistrationNumber] IS NOT NULL");
 
                     b.ToTable("Patients");
                 });
@@ -1659,33 +1667,34 @@ namespace PIMS.API.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<string>("CancerTreatment")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Familial")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Medical")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Other")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PatientId")
                         .HasColumnType("int");
 
                     b.Property<string>("Surgical")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -1699,19 +1708,20 @@ namespace PIMS.API.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .HasMaxLength(240)
-                        .HasColumnType("varchar(240) CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(240)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(120)
-                        .HasColumnType("varchar(120) CHARACTER SET utf8mb4");
+                        .HasColumnType("nvarchar(120)");
 
                     b.HasKey("Id");
 
