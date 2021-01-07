@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PIMS.API.Domain.Entities;
 
-namespace PIMS.API.Data.SchemaConfigurations
+namespace PIMS.API.Infrastructure.SchemaConfigurations
 {
     public class AtollsSchemaConfiguration : IEntityTypeConfiguration<Atoll>
     {

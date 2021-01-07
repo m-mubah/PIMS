@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PIMS.API.Data;
+using PIMS.API.Infrastructure;
 
 namespace PIMS.API.Migrations
 {
     [DbContext(typeof(PIMSContext))]
-    [Migration("20210106085932_Initial")]
+    [Migration("20210107050027_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

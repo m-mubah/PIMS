@@ -2,17 +2,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PIMS.API.Domain.Entities;
 
-namespace PIMS.API.Data.SchemaConfigurations
+namespace PIMS.API.Infrastructure.SchemaConfigurations
 {
-    public class TestTypesSchemaConfiguration : IEntityTypeConfiguration<TestType>
+    public class CaseTypesConfiguration : IEntityTypeConfiguration<CaseType>
     {
-        public void Configure(EntityTypeBuilder<TestType> builder)
+        public void Configure(EntityTypeBuilder<CaseType> builder)
         {
-            builder.ToTable("Test_Types");
+            builder.ToTable("Case_Types");
             builder.HasKey(k => k.Id);
 
             builder.Property(t => t.Name).IsRequired().HasMaxLength(120);
-            builder.Property(t => t.Description).HasMaxLength(240);
+            builder.Property(t => t.Type).IsRequired();
             builder.Property(t => t.DeletedOn).HasDefaultValue(null);
         }
     }
